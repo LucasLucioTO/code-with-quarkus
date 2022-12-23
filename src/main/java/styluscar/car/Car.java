@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,6 +31,11 @@ public class Car {
 
     @Column(name = "plate")
     private String plate;
+
+    @Column(name = "clientId")
+    private Long clientId;
+
+
 
     public void merge(Car car) {
         this.setModel(car.getModel());
