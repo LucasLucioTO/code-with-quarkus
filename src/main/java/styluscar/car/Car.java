@@ -1,9 +1,8 @@
 package styluscar.car;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import styluscar.car.dto.CreateCarDto;
+import styluscar.car.dto.UpdateCarDto;
 
 
 import javax.persistence.Column;
@@ -13,6 +12,7 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cars")
@@ -37,11 +37,17 @@ public class Car {
 
 
 
-    public void merge(Car car) {
-        this.setModel(car.getModel());
-        this.setColor(car.getColor());
-        this.setBrand(car.getBrand());
-        this.setPlate(car.getPlate());
+    public void merge(UpdateCarDto carDto) {
+        this.setModel(carDto.getModel());
+        this.setColor(carDto.getColor());
+        this.setBrand(carDto.getBrand());
+        this.setPlate(carDto.getPlate());
+    }
+    public void buildCar(CreateCarDto carDto) {
+        this.setModel(carDto.getModel());
+        this.setColor(carDto.getColor());
+        this.setBrand(carDto.getBrand());
+        this.setPlate(carDto.getPlate());
     }
 
 }

@@ -1,5 +1,8 @@
 package styluscar.car;
 
+import styluscar.car.dto.CreateCarDto;
+import styluscar.car.dto.UpdateCarDto;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
@@ -28,9 +31,9 @@ public class CarResource {
     @POST
     @Path("/create_car")
     @Transactional
-    public Car createCar (Car car) {
+    public Car createCar (CreateCarDto createCarDto) {
         try {
-            return this.service.createCar(car);
+            return this.service.createCar(createCarDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -39,9 +42,9 @@ public class CarResource {
     @PUT
     @Path("/create_car")
     @Transactional
-    public Car updateCar (Car car) {
+    public Car updateCar (UpdateCarDto updateCarDto) {
         try {
-            return this.service.updateCar(car);
+            return this.service.updateCar(updateCarDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }

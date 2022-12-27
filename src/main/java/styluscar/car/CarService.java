@@ -1,8 +1,10 @@
 package styluscar.car;
 
+import styluscar.car.dto.CreateCarDto;
+import styluscar.car.dto.UpdateCarDto;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.time.LocalDate;
 import java.util.List;
 
 @ApplicationScoped
@@ -17,25 +19,23 @@ public class CarService {
         return this.repository.listAll();
     }
 
-    public Car createCar (Car car) { //hbb0808
-        Car hasCar = this.findCarById(car.getId()); //hby0809
-        if (hasCar != null) {
-            throw new RuntimeException("Carro já cadastrado");
-        }
-        this.repository.persist(car);
-        return car;
+    public Car createCar (CreateCarDto createCarDto) { //hbb0808
+        Car entity = new Car();
+        entity.buildCar(createCarDto);
+        this.repository.persist(entity);
+        return entity;
     }
 
-    public Car updateCar (Car car) {
-        Car entity = this.findCarById(car.getId());
+    public Car updateCar (UpdateCarDto carDto) {
+        Car entity = this.findCarById(carDto.getId());
         if (entity == null) {
             throw new RuntimeException("Carro não foi encontrado");
         }
 
-        entity.merge(car);
+        entity.merge(carDto);
 
         this.repository.persist(entity);
-        return car;
+        return entity;
     }
 
     public boolean deleteCar (Long id) {
