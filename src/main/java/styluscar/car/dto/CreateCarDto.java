@@ -1,6 +1,5 @@
 package styluscar.car.dto;
 
-
 import io.smallrye.common.constraint.NotNull;
 import lombok.Data;
 

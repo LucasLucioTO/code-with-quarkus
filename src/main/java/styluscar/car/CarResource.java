@@ -16,13 +16,14 @@ import java.util.List;
  */
 @Path("car")
 public class CarResource {
-    @Inject CarService service;
+    @Inject
+    CarService service;
 
     @GET
     @Path("/cars")
-    public List<Car> getAllCars () {
+    public List<Car> getAllCars() {
         try {
-            return  this.service.findAllCars();
+            return this.service.findAllCars();
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -31,7 +32,7 @@ public class CarResource {
     @POST
     @Path("/create_car")
     @Transactional
-    public Car createCar (CreateCarDto createCarDto) {
+    public Car createCar(CreateCarDto createCarDto) {
         try {
             return this.service.createCar(createCarDto);
         } catch (Error e) {
@@ -42,7 +43,7 @@ public class CarResource {
     @PUT
     @Path("/update_car")
     @Transactional
-    public Car updateCar (UpdateCarDto updateCarDto) {
+    public Car updateCar(UpdateCarDto updateCarDto) {
         try {
             return this.service.updateCar(updateCarDto);
         } catch (Error e) {
@@ -53,7 +54,7 @@ public class CarResource {
     @PUT
     @Path("/delete_car")
     @Transactional
-    public boolean deleteCar (Long id) {
+    public boolean deleteCar(Long id) {
         try {
             return this.service.deleteCar(id);
         } catch (Error e) {
