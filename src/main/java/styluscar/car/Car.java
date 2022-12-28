@@ -42,12 +42,14 @@ public class Car {
         this.setColor(carDto.getColor());
         this.setBrand(carDto.getBrand());
         this.setPlate(carDto.getPlate());
+        this.setClientId(carDto.getClientId());
     }
     public void buildCar(CreateCarDto carDto) {
         this.setModel(carDto.getModel());
         this.setColor(carDto.getColor());
         this.setBrand(carDto.getBrand());
         this.setPlate(carDto.getPlate());
+        this.setClientId(carDto.getClientId());
     }
 
 }

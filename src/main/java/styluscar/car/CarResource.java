@@ -40,7 +40,7 @@ public class CarResource {
     }
 
     @PUT
-    @Path("/create_car")
+    @Path("/update_car")
     @Transactional
     public Car updateCar (UpdateCarDto updateCarDto) {
         try {
