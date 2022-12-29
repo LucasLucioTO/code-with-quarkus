@@ -40,7 +40,7 @@ public class ClientService {
 
     public boolean deleteClient(Long id) {
         if (this.repository.delete("id", id) < 1) {
-            throw new RuntimeException("Carro não foi apagado");
+            throw new RuntimeException("Cliente não foi apagado");
         }
         return true;
     }
