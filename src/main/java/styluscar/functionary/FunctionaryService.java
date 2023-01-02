@@ -8,20 +8,20 @@ import java.util.List;
 
 public class FunctionaryService {
     @Inject
-    FunctionaryRepository repository;
+    FunctionaryRepository fr;
 
     public Functionary findFunctionaryById(Long id){
-        return this.repository.findById(id);
+        return this.fr.findById(id);
     }
 
     public List<Functionary> findAllFunctionary(){
-        return this.repository.listAll();
+        return this.fr.listAll();
     }
 
     public Functionary createFunctionary(CreateFunctionaryDto createFunctionaryDto){
         Functionary functionary = new Functionary();
         functionary.buildFunctionary(createFunctionaryDto);
-        this.repository.persist(functionary);
+        this.fr.persist(functionary);
         return functionary;
     }
 
@@ -31,13 +31,13 @@ public class FunctionaryService {
             throw new RuntimeException("Funcionario não encontrado.");
         }
         functionary.merge(updateFunctionaryDto);
-        this.repository.persist(functionary);
+        this.fr.persist(functionary);
         return functionary;
 
     }
 
     public boolean deleteFunctionary(Long id){
-        if (this.repository.delete("id", id)<1){
+        if (this.fr.delete("id", id)<1){
             throw new RuntimeException("Funcionario não encotrado para apagar.");
         }
         return true;

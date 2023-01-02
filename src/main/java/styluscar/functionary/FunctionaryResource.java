@@ -15,13 +15,13 @@ import java.util.List;
 @Path("functionary")
 public class FunctionaryResource {
     @Inject
-    FunctionaryService service;
+    FunctionaryService fs;
 
     @GET
     @Path("/functionarys")
     public List<Functionary> getAllFunctionarys() {
         try{
-            return this.service.findAllFunctionary();
+            return this.fs.findAllFunctionary();
         } catch (Error e){
             throw new RuntimeException(e);
         }
@@ -32,7 +32,7 @@ public class FunctionaryResource {
     @Transactional
     public Functionary createFunctionary(CreateFunctionaryDto createFunctionaryDto){
         try{
-            return this.service.createFunctionary(createFunctionaryDto);
+            return this.fs.createFunctionary(createFunctionaryDto);
         }catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -43,7 +43,7 @@ public class FunctionaryResource {
     @Transactional
     public Functionary updateFunctionary(UpdateFunctionaryDto updateFunctionaryDto){
         try {
-            return this.service.updatefunctionary(updateFunctionaryDto);
+            return this.fs.updatefunctionary(updateFunctionaryDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -54,7 +54,7 @@ public class FunctionaryResource {
     @Transactional
     public boolean deleteFunctionary(long id){
         try {
-            return this.service.deleteFunctionary(id);
+            return this.fs.deleteFunctionary(id);
         } catch (Error e) {
             throw new RuntimeException(e);
         }

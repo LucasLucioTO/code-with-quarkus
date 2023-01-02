@@ -11,20 +11,20 @@ import java.util.List;
 @ApplicationScoped
 public class ClientService {
     @Inject
-    ClientRepository repository;
+    ClientRepository cr;
 
     public Client findClientById(Long id) {
-        return this.repository.findById(id);
+        return this.cr.findById(id);
     }
 
     public List<Client> findAllClient() {
-        return this.repository.listAll();
+        return this.cr.listAll();
     }
 
     public Client createClient(CreateClientDto createClientDto) {
         Client client = new Client();
         client.buildClient(createClientDto);
-        this.repository.persist(client);
+        this.cr.persist(client);
         return client;
     }
     public Client updateClient (UpdateClientDto updateClientDto){
@@ -33,13 +33,13 @@ public class ClientService {
             throw new RuntimeException("Cliente não encontrado");
         }
         client.merge(updateClientDto);
-        this.repository.persist(client);
+        this.cr.persist(client);
         return client;
 
     }
 
     public boolean deleteClient(Long id) {
-        if (this.repository.delete("id", id) < 1) {
+        if (this.cr.delete("id", id) < 1) {
             throw new RuntimeException("Cliente não foi apagado");
         }
         return true;

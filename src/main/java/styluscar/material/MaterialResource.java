@@ -16,14 +16,14 @@ import java.util.List;
 public class MaterialResource {
 
     @Inject
-    MaterialService materialService;
+    MaterialService ms;
 
     @GET
     @Path("/materials")
     @Transactional
-    public List<Material> listAlMaterials(){
+    public List<Material> listAllMaterials(){
         try {
-            return this.materialService.findAllMaterial();
+            return this.ms.findAllMaterial();
         } catch (Error e ) {
             throw new RuntimeException(e);
         }
@@ -34,7 +34,7 @@ public class MaterialResource {
     @Transactional
     public Material createMaterial(CreateMaterialDto createMaterialDto){
         try {
-            return this.materialService.createMaterial(createMaterialDto);
+            return this.ms.createMaterial(createMaterialDto);
         } catch(Error e) {
             throw new RuntimeException(e);
         }
@@ -45,7 +45,7 @@ public class MaterialResource {
     @Transactional
     public Material updateMaterial(UpdateMaterialDto updateMaterialDto){
         try{
-            return this.materialService.updateMaterial(updateMaterialDto);
+            return this.ms.updateMaterial(updateMaterialDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -56,7 +56,7 @@ public class MaterialResource {
     @Transactional
     public boolean deleteMaterial(Long id){
         try{
-            return this.materialService.deleteMaterial(id);
+            return this.ms.deleteMaterial(id);
         }catch(Error e) {
             throw new RuntimeException(e);
         }

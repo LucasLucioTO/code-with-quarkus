@@ -10,20 +10,20 @@ import java.util.List;
 @ApplicationScoped
 public class MaterialService {
     @Inject
-    MaterialRepository repository;
+    MaterialRepository mr;
 
     public Material findById(Long id){
-        return this.repository.findById(id);
+        return this.mr.findById(id);
     }
 
     public List<Material> findAllMaterial(){
-        return this.repository.listAll();
+        return this.mr.listAll();
     }
 
     public Material createMaterial(CreateMaterialDto createMaterialDto){
         Material material =new Material();
         material.buildMaterial(createMaterialDto);
-        this.repository.persist(material);
+        this.mr.persist(material);
         return material;
     }
 
@@ -33,12 +33,12 @@ public class MaterialService {
             throw new RuntimeException("Material não encontrado.");
         }
         material.merge(updateMaterialDto);
-        this.repository.persist(material);
+        this.mr.persist(material);
         return material;
     }
 
     public boolean deleteMaterial(Long id){
-        if (this.repository.delete("id",id)<1){
+        if (this.mr.delete("id",id)<1){
             throw new RuntimeException("Material não foi encontrado para apagar.");
         }
         return true;
