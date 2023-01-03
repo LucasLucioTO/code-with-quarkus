@@ -22,4 +22,10 @@ public class CreateCarDto {
     @NotNull
     private Long clientId;
 
+    @NotNull
+    private String dateEnter;
+
+    @NotNull
+    private String dateExit;
+
 }

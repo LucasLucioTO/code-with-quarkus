@@ -8,14 +8,27 @@ public class UpdateCarDto {
     @NotNull
     private Long id;
 
+
+    @NotNull
     private String model;
 
+    @NotNull
     private String color;
 
+    @NotNull
     private String brand;
 
+    @NotNull
     private String plate;
 
+    @NotNull
     private Long clientId;
+
+    @NotNull
+    private String dateEnter;
+
+    @NotNull
+    private String dateExit;
+
 
 }

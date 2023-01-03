@@ -35,7 +35,11 @@ public class Car {
     @Column(name = "clientId")
     private Long clientId;
 
+    @Column(name="dateenter")
+    private String dateEnter;
 
+    @Column(name="dateexit")
+    private String dateExit;
 
     public void merge(UpdateCarDto carDto) {
         this.setModel(carDto.getModel());
@@ -43,6 +47,8 @@ public class Car {
         this.setBrand(carDto.getBrand());
         this.setPlate(carDto.getPlate());
         this.setClientId(carDto.getClientId());
+        this.setDateEnter(carDto.getDateEnter());
+        this.setDateExit(carDto.getDateExit());
     }
     public void buildCar(CreateCarDto carDto) {
         this.setModel(carDto.getModel());
@@ -50,6 +56,8 @@ public class Car {
         this.setBrand(carDto.getBrand());
         this.setPlate(carDto.getPlate());
         this.setClientId(carDto.getClientId());
+        this.setDateEnter(carDto.getDateEnter());
+        this.setDateExit(carDto.getDateExit());
     }
 
 }
