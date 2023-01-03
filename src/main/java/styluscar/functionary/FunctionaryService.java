@@ -3,9 +3,11 @@ package styluscar.functionary;
 import styluscar.functionary.dto.CreateFunctionaryDto;
 import styluscar.functionary.dto.UpdateFunctionaryDto;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
 
+@ApplicationScoped
 public class FunctionaryService {
     @Inject
     FunctionaryRepository fr;
