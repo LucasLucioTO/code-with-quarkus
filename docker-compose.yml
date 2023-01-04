@@ -1,0 +1,16 @@
+version: "3.0"
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_DB: stylusdb
+      POSTGRES_PASSWORD: stylusdev
+      POSTGRES_USER: stylusdev
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 5432:5432
+      
+
+
+
