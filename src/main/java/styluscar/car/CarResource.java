@@ -5,10 +5,8 @@ import styluscar.car.dto.UpdateCarDto;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
@@ -21,9 +19,11 @@ public class CarResource {
 
     @GET
     @Path("/cars")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Car> getAllCars() {
         try {
-            return this.cs.findAllCars();
+            List<Car> cars = this.cs.findAllCars();
+            return cars;
         } catch (Error e) {
             throw new RuntimeException(e);
         }

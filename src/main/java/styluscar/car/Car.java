@@ -5,17 +5,15 @@ import styluscar.car.dto.CreateCarDto;
 import styluscar.car.dto.UpdateCarDto;
 
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cars")
+@Entity
+@Table(name = "car")
 public class Car {
     @Id @GeneratedValue
     private Long id;
@@ -32,13 +30,13 @@ public class Car {
     @Column(name = "plate")
     private String plate;
 
-    @Column(name = "clientId")
-    private Long clientId;
+//    @Column(name = "clientId")
+//    private Long clientId;
 
-    @Column(name="dateenter")
+    @Column(name="date_enter")
     private String dateEnter;
 
-    @Column(name="dateexit")
+    @Column(name="date_exit")
     private String dateExit;
 
     public void merge(UpdateCarDto carDto) {
@@ -46,7 +44,7 @@ public class Car {
         this.setColor(carDto.getColor());
         this.setBrand(carDto.getBrand());
         this.setPlate(carDto.getPlate());
-        this.setClientId(carDto.getClientId());
+        //this.setClientId(carDto.getClientId());
         this.setDateEnter(carDto.getDateEnter());
         this.setDateExit(carDto.getDateExit());
     }
@@ -55,7 +53,7 @@ public class Car {
         this.setColor(carDto.getColor());
         this.setBrand(carDto.getBrand());
         this.setPlate(carDto.getPlate());
-        this.setClientId(carDto.getClientId());
+        //this.setClientId(carDto.getClientId());
         this.setDateEnter(carDto.getDateEnter());
         this.setDateExit(carDto.getDateExit());
     }
