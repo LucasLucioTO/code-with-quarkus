@@ -19,7 +19,6 @@ public class ServiceResource {
 
     @GET
     @Path("/Services")
-    @Transactional
     public List<Service> listAllService(){
          try{
              return this.ss.findAll();

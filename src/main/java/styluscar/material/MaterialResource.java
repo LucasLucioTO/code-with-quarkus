@@ -20,7 +20,6 @@ public class MaterialResource {
 
     @GET
     @Path("/materials")
-    @Transactional
     public List<Material> listAllMaterials(){
         try {
             return this.ms.findAllMaterial();
