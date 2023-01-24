@@ -15,14 +15,14 @@ import java.util.List;
 @Path("car")
 public class CarResource {
     @Inject
-    CarService cs;
+    CarService service;
 
     @GET
     @Path("/cars")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Car> getAllCars() {
         try {
-            List<Car> cars = this.cs.findAllCars();
+            List<Car> cars = this.service.findAllCars();
             return cars;
         } catch (Error e) {
             throw new RuntimeException(e);
@@ -34,7 +34,7 @@ public class CarResource {
     @Transactional
     public Car createCar(CreateCarDto createCarDto) {
         try {
-            return this.cs.createCar(createCarDto);
+            return this.service.createCar(createCarDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -45,7 +45,7 @@ public class CarResource {
     @Transactional
     public Car updateCar(UpdateCarDto updateCarDto) {
         try {
-            return this.cs.updateCar(updateCarDto);
+            return this.service.updateCar(updateCarDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -56,7 +56,7 @@ public class CarResource {
     @Transactional
     public boolean deleteCar(Long id) {
         try {
-            return this.cs.deleteCar(id);
+            return this.service.deleteCar(id);
         } catch (Error e) {
             throw new RuntimeException(e);
         }

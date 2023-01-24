@@ -9,20 +9,20 @@ import java.util.List;
 
 @ApplicationScoped
 public class CarService {
-    @Inject CarRepository cr;
+    @Inject CarRepository repository;
 
     public Car findCarById (Long id) {
-        return this.cr.findById(id);
+        return this.repository.findById(id);
     }
 
     public List<Car> findAllCars () {
-        return this.cr.listAll();
+        return this.repository.listAll();
     }
 
     public Car createCar (CreateCarDto createCarDto) {
         Car entity = new Car();
         entity.buildCar(createCarDto);
-        this.cr.persist(entity);
+        this.repository.persist(entity);
         return entity;
     }
 
@@ -34,12 +34,12 @@ public class CarService {
 
         entity.merge(carDto);
 
-        this.cr.persist(entity);
+        this.repository.persist(entity);
         return entity;
     }
 
     public boolean deleteCar (Long id) {
-        if (this.cr.delete("id", id) < 1) {
+        if (this.repository.delete("id", id) < 1) {
             throw new RuntimeException("Carro não foi apagado");
         }
         return true;

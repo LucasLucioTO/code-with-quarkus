@@ -17,13 +17,13 @@ import java.util.List;
 @Path("client")
 public class ClientResource {
     @Inject
-    ClientService cs;
+    ClientService service;
 
     @GET
     @Path("/clients")
     public List<Client> getAllClients() {
         try {
-            return this.cs.findAllClient();
+            return this.service.findAllClient();
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +34,7 @@ public class ClientResource {
     @Transactional
     public Client createClient(CreateClientDto createClientDto) {
         try{
-            return this.cs.createClient(createClientDto);
+            return this.service.createClient(createClientDto);
         }catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -45,7 +45,7 @@ public class ClientResource {
     @Transactional
     public Client updateClient(UpdateClientDto updateClientDto) {
         try {
-            return this.cs.updateClient(updateClientDto);
+            return this.service.updateClient(updateClientDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -56,7 +56,7 @@ public class ClientResource {
     @Transactional
     public boolean deleteClient(Long id) {
         try {
-            return this.cs.deleteClient(id);
+            return this.service.deleteClient(id);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
