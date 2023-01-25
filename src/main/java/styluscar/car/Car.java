@@ -8,6 +8,7 @@ import styluscar.car.dto.UpdateCarDto;
 
 
 import javax.persistence.*;
+import styluscar.client.Client;
 
 @Getter
 @Setter
@@ -32,24 +33,19 @@ public class Car {
     @Column(name = "plate")
     private String plate;
 
-//    @Column(name = "clientId")
-//    private Long clientId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "client_id",
+        referencedColumnName = "id",
+        foreignKey = @ForeignKey(name = "fk_car_client"),
+        nullable = false)
+    private Client client;
 
     @Column(name="date_enter", columnDefinition = "TIMESTAMP")
     private LocalDateTime dateEnter;
 
     @Column(name="date_exit", columnDefinition = "TIMESTAMP")
     private LocalDateTime dateExit;
-
-    public void merge(UpdateCarDto carDto) {
-        this.setModel(carDto.getModel());
-        this.setColor(carDto.getColor());
-        this.setBrand(carDto.getBrand());
-        this.setPlate(carDto.getPlate());
-        //this.setClientId(carDto.getClientId());
-        this.setDateEnter(carDto.getDateEnter());
-        this.setDateExit(carDto.getDateExit());
-    }
 
 }
 

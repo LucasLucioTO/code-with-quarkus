@@ -7,12 +7,16 @@ import styluscar.car.dto.UpdateCarDto;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
+import styluscar.client.Client;
+import styluscar.client.ClientRepository;
 
 @ApplicationScoped
 public class CarService {
     @Inject CarRepository repository;
 
     @Inject CarMapper mapper;
+
+    @Inject ClientRepository clientRepository;
 
     public Car findCarById (Long id) {
         return this.repository.findById(id);
@@ -24,6 +28,12 @@ public class CarService {
 
     public Car createCar (CreateCarDto createCarDto) {
         Car entity = mapper.createCarDtoToCar(createCarDto);
+
+        Client client = this.clientRepository.findByIdOptional(createCarDto.getClientId()).orElseThrow(
+            () -> new RuntimeException("Cliente não encontrado"));
+
+        entity.setClient(client);
+
         this.repository.persist(entity);
         return entity;
     }

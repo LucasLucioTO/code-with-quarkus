@@ -19,6 +19,9 @@ public class CreateCarDto {
     @NotNull
     private String plate;
 
+    @NotNull
+    private Long clientId;
+
 
 //    @NotNull
 //    private Long clientId;
