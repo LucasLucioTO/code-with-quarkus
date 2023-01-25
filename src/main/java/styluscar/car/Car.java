@@ -1,5 +1,7 @@
 package styluscar.car;
 
+import java.time.LocalDateTime;
+import javax.json.bind.annotation.JsonbDateFormat;
 import lombok.*;
 import styluscar.car.dto.CreateCarDto;
 import styluscar.car.dto.UpdateCarDto;
@@ -15,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "car")
 public class Car {
-    @Id @GeneratedValue
+    @Id @GeneratedValue()
     private Long id;
 
     @Column(name = "model")
@@ -33,22 +35,13 @@ public class Car {
 //    @Column(name = "clientId")
 //    private Long clientId;
 
-    @Column(name="date_enter")
-    private String dateEnter;
+    @Column(name="date_enter", columnDefinition = "TIMESTAMP")
+    private LocalDateTime dateEnter;
 
-    @Column(name="date_exit")
-    private String dateExit;
+    @Column(name="date_exit", columnDefinition = "TIMESTAMP")
+    private LocalDateTime dateExit;
 
     public void merge(UpdateCarDto carDto) {
-        this.setModel(carDto.getModel());
-        this.setColor(carDto.getColor());
-        this.setBrand(carDto.getBrand());
-        this.setPlate(carDto.getPlate());
-        //this.setClientId(carDto.getClientId());
-        this.setDateEnter(carDto.getDateEnter());
-        this.setDateExit(carDto.getDateExit());
-    }
-    public void buildCar(CreateCarDto carDto) {
         this.setModel(carDto.getModel());
         this.setColor(carDto.getColor());
         this.setBrand(carDto.getBrand());
