@@ -12,7 +12,9 @@ import java.util.List;
 /**
  * Endpoints relacionados aos carros
  */
-@Path("car")
+@Produces("application/json")
+@Consumes("application/json")
+@Path("/car")
 public class CarResource {
     @Inject
     CarService service;
