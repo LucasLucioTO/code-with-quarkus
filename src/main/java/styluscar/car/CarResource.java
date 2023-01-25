@@ -1,13 +1,21 @@
 package styluscar.car;
 
-import styluscar.car.dto.CreateCarDto;
-import styluscar.car.dto.UpdateCarDto;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
+
+import styluscar.car.dto.CreateCarDto;
+import styluscar.car.dto.UpdateCarDto;
 
 /**
  * Endpoints relacionados aos carros
@@ -32,7 +40,6 @@ public class CarResource {
     }
 
     @POST
-    @Path("/create_car")
     @Transactional
     public Car createCar(CreateCarDto createCarDto) {
         try {
@@ -43,20 +50,20 @@ public class CarResource {
     }
 
     @PUT
-    @Path("/update_car")
+    @Path("/{id}")
     @Transactional
-    public Car updateCar(UpdateCarDto updateCarDto) {
+    public Car updateCar(@PathParam("id") Long id, UpdateCarDto updateCarDto) {
         try {
-            return this.service.updateCar(updateCarDto);
+            return this.service.updateCar(id, updateCarDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
     }
 
-    @PUT
-    @Path("/delete_car")
+    @DELETE
+    @Path("/{id}")
     @Transactional
-    public boolean deleteCar(Long id) {
+    public boolean deleteCar(@PathParam("id") Long id) {
         try {
             return this.service.deleteCar(id);
         } catch (Error e) {
