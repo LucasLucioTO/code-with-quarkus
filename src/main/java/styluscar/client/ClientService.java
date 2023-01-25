@@ -14,7 +14,8 @@ public class ClientService {
     ClientRepository cr;
 
     public Client findClientById(Long id) {
-        return this.cr.findById(id);
+        return this.cr.findByIdOptional(id).orElseThrow(
+            () -> new RuntimeException("erro ao buscar clientes" ));
     }
 
     public List<Client> findAllClient() {
