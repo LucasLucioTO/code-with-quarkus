@@ -1,6 +1,7 @@
 package styluscar.car.dto;
 
 import io.smallrye.common.constraint.NotNull;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
@@ -19,13 +20,10 @@ public class CreateCarDto {
     private String plate;
 
 
-    @NotNull
-    private Long clientId;
+//    @NotNull
+//    private Long clientId;
+    private LocalDateTime dateEnter;
 
-    @NotNull
-    private String dateEnter;
-
-    @NotNull
-    private String dateExit;
+    private LocalDateTime dateExit;
 
 }

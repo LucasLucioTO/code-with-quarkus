@@ -1,34 +1,26 @@
 package styluscar.car.dto;
 
 import io.smallrye.common.constraint.NotNull;
+import java.time.LocalDateTime;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class UpdateCarDto {
-    @NotNull
-    private Long id;
+  private String model;
 
+  private String color;
 
-    @NotNull
-    private String model;
+  private String brand;
 
-    @NotNull
-    private String color;
+  private String plate;
 
-    @NotNull
-    private String brand;
+  private Long clientId;
 
-    @NotNull
-    private String plate;
+  private LocalDateTime dateEnter;
 
-    @NotNull
-    private Long clientId;
-
-    @NotNull
-    private String dateEnter;
-
-    @NotNull
-    private String dateExit;
+  private LocalDateTime dateExit;
 
 
 }
