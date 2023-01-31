@@ -10,35 +10,35 @@ import java.util.List;
 @ApplicationScoped
 public class MaterialService {
     @Inject
-    MaterialRepository mr;
+    MaterialRepository repository;
+    @Inject MaterialMapper mapper;
 
     public Material findById(Long id){
-        return this.mr.findById(id);
+        return this.repository.findById(id);
     }
 
     public List<Material> findAllMaterial(){
-        return this.mr.listAll();
+        return this.repository.listAll();
     }
 
     public Material createMaterial(CreateMaterialDto createMaterialDto){
-        Material material =new Material();
-        material.buildMaterial(createMaterialDto);
-        this.mr.persist(material);
-        return material;
+        Material entity = mapper.createMaterialDtoToMaterial(createMaterialDto);
+        this.repository.persist(entity);
+        return entity;
     }
 
-    public Material updateMaterial(UpdateMaterialDto updateMaterialDto){
-        Material material = this.findById(updateMaterialDto.getId());
-        if (material == null){
+    public Material updateMaterial(final Long id, final UpdateMaterialDto updateMaterialDto){
+        Material entity = this.findById(id);
+        if (entity == null){
             throw new RuntimeException("Material não encontrado.");
         }
-        material.merge(updateMaterialDto);
-        this.mr.persist(material);
-        return material;
+        mapper.updateMaterialDtoToMaterial(updateMaterialDto, entity);
+        this.repository.persist(entity);
+        return entity;
     }
 
     public boolean deleteMaterial(Long id){
-        if (this.mr.delete("id",id)<1){
+        if (this.repository.delete("id",id)<1){
             throw new RuntimeException("Material não foi encontrado para apagar.");
         }
         return true;

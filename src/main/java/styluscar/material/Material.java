@@ -1,11 +1,6 @@
 package styluscar.material;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import styluscar.material.dto.CreateMaterialDto;
-import styluscar.material.dto.UpdateMaterialDto;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -14,6 +9,7 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "material")
@@ -26,15 +22,4 @@ public class Material {
     @Column(name = "quantity")
     private Long quantity;
 
-    public void merge(UpdateMaterialDto updateMaterialDto) {
-        this.setId(updateMaterialDto.getId());
-        this.setName(updateMaterialDto.getName());
-        this.setQuantity(updateMaterialDto.getQuantity());
-
-    }
-
-    public void buildMaterial(CreateMaterialDto createMaterialDto){
-        this.setName(createMaterialDto.getName());
-        this.setQuantity(createMaterialDto.getQuantity());
-    }
 }
