@@ -6,44 +6,46 @@ import styluscar.functionary.dto.UpdateFunctionaryDto;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.awt.*;
 import java.util.List;
 
-@Path("functionary")
+@Produces("application/json")
+@Consumes("application/json")
+@Path("/functionary")
 public class FunctionaryResource {
     @Inject
-    FunctionaryService functionaryService;
+    FunctionaryService service;
 
     @GET
     @Path("/functionarys")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Functionary> getAllFunctionarys() {
         try{
-            return this.functionaryService.findAllFunctionary();
+            List<Functionary> functionarys = this.service.findAllFunctionary();
+            return functionarys;
         } catch (Error e){
             throw new RuntimeException(e);
         }
     }
 
     @POST
-    @Path("/create_functionary")
     @Transactional
     public Functionary createFunctionary(CreateFunctionaryDto createFunctionaryDto){
         try{
-            return this.functionaryService.createFunctionary(createFunctionaryDto);
+            return this.service.createFunctionary(createFunctionaryDto);
         }catch (Error e) {
             throw new RuntimeException(e);
         }
     }
 
     @PUT
-    @Path("/update_functionary")
+    @Path("/{id}")
     @Transactional
-    public Functionary updateFunctionary(UpdateFunctionaryDto updateFunctionaryDto){
+    public Functionary updateFunctionary(@PathParam("id") Long id, UpdateFunctionaryDto updateFunctionaryDto){
         try {
-            return this.functionaryService.updatefunctionary(updateFunctionaryDto);
+            return this.service.updatefunctionary(id, updateFunctionaryDto);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
@@ -54,7 +56,7 @@ public class FunctionaryResource {
     @Transactional
     public boolean deleteFunctionary(long id){
         try {
-            return this.functionaryService.deleteFunctionary(id);
+            return this.service.deleteFunctionary(id);
         } catch (Error e) {
             throw new RuntimeException(e);
         }
