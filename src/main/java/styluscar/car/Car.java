@@ -1,14 +1,10 @@
 package styluscar.car;
 
-import java.time.LocalDateTime;
-import javax.json.bind.annotation.JsonbDateFormat;
 import lombok.*;
-import styluscar.car.dto.CreateCarDto;
-import styluscar.car.dto.UpdateCarDto;
-
+import styluscar.client.Client;
 
 import javax.persistence.*;
-import styluscar.client.Client;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
