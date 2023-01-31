@@ -11,36 +11,38 @@ import java.util.List;
 @ApplicationScoped
 public class ClientService {
     @Inject
-    ClientRepository cr;
+    ClientRepository repository;
+
+    @Inject ClientMapper mapper;
+
 
     public Client findClientById(Long id) {
-        return this.cr.findByIdOptional(id).orElseThrow(
+        return this.repository.findByIdOptional(id).orElseThrow(
             () -> new RuntimeException("erro ao buscar clientes" ));
     }
 
     public List<Client> findAllClient() {
-        return this.cr.listAll();
+        return this.repository.listAll();
     }
 
     public Client createClient(CreateClientDto createClientDto) {
-        Client client = new Client();
-        client.buildClient(createClientDto);
-        this.cr.persist(client);
-        return client;
+        Client entity = mapper.createClientDtotoCar(createClientDto);
+        this.repository.persist(entity);
+        return entity;
     }
-    public Client updateClient (UpdateClientDto updateClientDto){
-        Client client = this.findClientById(updateClientDto.getId());
-        if (client == null){
+    public Client updateClient (final Long id, final UpdateClientDto updateClientDto){
+        Client entity = this.findClientById(id);
+        if (entity == null){
             throw new RuntimeException("Cliente não encontrado");
         }
-        client.merge(updateClientDto);
-        this.cr.persist(client);
-        return client;
+        mapper.updateClientDtoToClient(updateClientDto, entity);
+        this.repository.persist(entity);
+        return entity;
 
     }
 
     public boolean deleteClient(Long id) {
-        if (this.cr.delete("id", id) < 1) {
+        if (this.repository.delete("id", id) < 1) {
             throw new RuntimeException("Cliente não foi apagado");
         }
         return true;
