@@ -32,8 +32,7 @@ public class CarResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Car> getAllCars() {
         try {
-            List<Car> cars = this.service.findAllCars();
-            return cars;
+            return this.service.findAllCars();
         } catch (Error e) {
             throw new RuntimeException(e);
         }

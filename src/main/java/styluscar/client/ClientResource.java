@@ -25,8 +25,7 @@ public class ClientResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Client> getAllClients() {
         try {
-           List<Client> clients = this.service.findAllClient();
-           return clients;
+            return this.service.findAllClient();
         } catch (Error e) {
             throw new RuntimeException(e);
         }

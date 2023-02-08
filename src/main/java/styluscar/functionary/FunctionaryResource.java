@@ -23,8 +23,7 @@ public class FunctionaryResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Functionary> getAllFunctionarys() {
         try{
-            List<Functionary> functionarys = this.service.findAllFunctionary();
-            return functionarys;
+            return this.service.findAllFunctionary();
         } catch (Error e){
             throw new RuntimeException(e);
         }

@@ -21,8 +21,7 @@ public class MaterialResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Material> listAllMaterials(){
         try {
-            List<Material> materials = this.service.findAllMaterial();
-            return materials;
+            return this.service.findAllMaterial();
         } catch (Error e ) {
             throw new RuntimeException(e);
         }

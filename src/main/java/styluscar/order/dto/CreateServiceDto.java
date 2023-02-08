@@ -1,14 +1,11 @@
-package styluscar.service.dto;
+package styluscar.order.dto;
+
 
 import io.smallrye.common.constraint.NotNull;
 import lombok.Data;
 
-
 @Data
-public class UpdateServiceDto {
-
-    @NotNull
-    private Long Id;
+public class CreateServiceDto {
 
     @NotNull
     private String type;
