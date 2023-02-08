@@ -10,36 +10,37 @@ import java.util.List;
 @ApplicationScoped
 public class FunctionaryService {
     @Inject
-    FunctionaryRepository fr;
+    FunctionaryRepository repository;
+    @Inject FunctionaryMapper mapper;
+
 
     public Functionary findFunctionaryById(Long id){
-        return this.fr.findById(id);
+        return this.repository.findById(id);
     }
 
     public List<Functionary> findAllFunctionary(){
-        return this.fr.listAll();
+        return this.repository.listAll();
     }
 
     public Functionary createFunctionary(CreateFunctionaryDto createFunctionaryDto){
-        Functionary functionary = new Functionary();
-        functionary.buildFunctionary(createFunctionaryDto);
-        this.fr.persist(functionary);
-        return functionary;
+        Functionary entity = mapper.createFunctionaryDtoToFunctionary(createFunctionaryDto);
+        this.repository.persist(entity);
+        return entity;
     }
 
-    public Functionary updatefunctionary(UpdateFunctionaryDto updateFunctionaryDto){
-        Functionary functionary = this.findFunctionaryById(updateFunctionaryDto.getId());
-        if(functionary == null){
+    public Functionary updatefunctionary(final Long id, final UpdateFunctionaryDto updateFunctionaryDto){
+        Functionary entity = this.findFunctionaryById(id);
+        if(entity == null){
             throw new RuntimeException("Funcionario não encontrado.");
         }
-        functionary.merge(updateFunctionaryDto);
-        this.fr.persist(functionary);
-        return functionary;
+        mapper.updateFunctionaryDtotoFunctionary(updateFunctionaryDto, entity);
+        this.repository.persist(entity);
+        return entity;
 
     }
 
     public boolean deleteFunctionary(Long id){
-        if (this.fr.delete("id", id)<1){
+        if (this.repository.delete("id", id)<1){
             throw new RuntimeException("Funcionario não encotrado para apagar.");
         }
         return true;

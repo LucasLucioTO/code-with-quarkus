@@ -1,14 +1,13 @@
 package styluscar.car;
 
-import javax.persistence.PrePersist;
 import styluscar.car.dto.CreateCarDto;
 import styluscar.car.dto.UpdateCarDto;
+import styluscar.client.Client;
+import styluscar.client.ClientRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
-import styluscar.client.Client;
-import styluscar.client.ClientRepository;
 
 @ApplicationScoped
 public class CarService {

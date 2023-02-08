@@ -1,24 +1,26 @@
 package styluscar.car;
 
-import java.time.LocalDateTime;
-import javax.json.bind.annotation.JsonbDateFormat;
-import lombok.*;
-import styluscar.car.dto.CreateCarDto;
-import styluscar.car.dto.UpdateCarDto;
-
-
-import javax.persistence.*;
+import lombok.Data;
 import styluscar.client.Client;
 
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
+
+
+@Data
 @Entity
 @Table(name = "car")
 public class Car {
-    @Id @GeneratedValue()
+    @Id
+    @GeneratedValue()
     private Long id;
 
     @Column(name = "model")
