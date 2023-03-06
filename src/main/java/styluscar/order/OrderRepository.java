@@ -1,4 +1,4 @@
-package styluscar.service;
+package styluscar.order;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
@@ -6,9 +6,9 @@ import javax.enterprise.context.ApplicationScoped;
 
 
 @ApplicationScoped
-public class ServiceRepository implements PanacheRepository<Service> {
+public class OrderRepository implements PanacheRepository<Order> {
 
-    public Service findServiceById(Long id){
+    public Order findServiceById(Long id){
         return this.find("id", id).firstResultOptional().orElseThrow(
                 () -> new RuntimeException("Serviço não encontrado.")
         );

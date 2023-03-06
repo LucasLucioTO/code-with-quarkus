@@ -5,7 +5,7 @@ import io.smallrye.common.constraint.NotNull;
 import lombok.Data;
 
 @Data
-public class CreateServiceDto {
+public class CreateOrderDto {
 
     @NotNull
     private String type;

@@ -5,7 +5,7 @@ import lombok.Data;
 
 
 @Data
-public class UpdateServiceDto {
+public class UpdateOrderDto {
 
     @NotNull
     private Long Id;

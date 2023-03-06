@@ -1,27 +1,25 @@
-package styluscar.service;
+package styluscar.order;
 
 
-import styluscar.service.dto.CreateServiceDto;
-import styluscar.service.dto.UpdateServiceDto;
+import styluscar.order.dto.CreateOrderDto;
+import styluscar.order.dto.UpdateOrderDto;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import java.util.List;
 
-@Path("Service")
-public class ServiceResource {
+@Produces("/")
+@Path("service")
+public class OrderResource {
     @Inject
-    ServiceService ss;
+    OrderService service;
 
     @GET
-    @Path("/Services")
-    public List<Service> listAllService(){
+    @Path("/services")
+    public List<Order> listAllService(){
          try{
-             return this.ss.findAll();
+             return this.service.findAll();
          } catch(Error e){
              throw new RuntimeException(e);
          }
@@ -30,9 +28,9 @@ public class ServiceResource {
     @POST
     @Path("/create_service")
     @Transactional
-    public Service createService(CreateServiceDto createServiceDto){
+    public Order createService(CreateOrderDto createOrderDto){
         try{
-            return this.ss.createService(createServiceDto);
+            return this.service.createService(createOrderDto);
         }catch (Error e){
             throw new RuntimeException(e);
         }
@@ -41,9 +39,9 @@ public class ServiceResource {
     @PUT
     @Path("/update_service")
     @Transactional
-    public Service updateService(UpdateServiceDto updateServiceDto){
+    public Order updateService(UpdateOrderDto updateOrderDto){
         try{
-            return this.ss.updateService(updateServiceDto);
+            return this.service.updateService(updateOrderDto);
         } catch(Error e){
             throw new RuntimeException(e);
         }
@@ -54,7 +52,7 @@ public class ServiceResource {
     @Transactional
     public boolean deleteService(Long id){
         try{
-            return this.ss.deletedService(id);
+            return this.service.deletedService(id);
         }catch(Error e){
             throw new RuntimeException(e);
         }
