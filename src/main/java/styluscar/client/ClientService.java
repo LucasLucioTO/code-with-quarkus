@@ -26,7 +26,7 @@ public class ClientService {
     }
 
     public Client createClient(CreateClientDto createClientDto) {
-        Client entity = mapper.createClientDtotoCar(createClientDto);
+        Client entity = mapper.createClientDtoToCar(createClientDto);
         this.repository.persist(entity);
         return entity;
     }

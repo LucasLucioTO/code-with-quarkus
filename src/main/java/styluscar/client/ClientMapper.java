@@ -13,7 +13,7 @@ public interface ClientMapper {
 
     ClientMapper INSTANCE = Mappers.getMapper((ClientMapper.class));
 
-    public Client createClientDtotoCar (CreateClientDto createClientDto);
+    public Client createClientDtoToCar(CreateClientDto createClientDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     public Client updateClientDtoToClient (UpdateClientDto updateClientDto,@MappingTarget Client client);
