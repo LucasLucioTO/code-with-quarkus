@@ -10,35 +10,37 @@ import java.util.List;
 @ApplicationScoped
 public class OrderService {
     @Inject
-    OrderRepository sr;
+    OrderRepository repository;
 
+    @Inject
+    OrderMapper mapper;
     public Order findById(Long id){
-        return this.sr.findById(id);
+        return this.repository.findByIdOptional(id).orElseThrow(
+                () -> new RuntimeException("erro ao buscar clientes" ));
     }
 
     public List<Order> findAll(){
-        return this.sr.listAll();
+        return this.repository.listAll();
     }
 
     public Order createService(CreateOrderDto createOrderDto){
-        Order order = new Order();
-        order.buildService(createOrderDto);
-        this.sr.persist(order);
-        return order;
+        Order entity =mapper.createOrderDtoToCar(createOrderDto);
+        this.repository.persist(entity);
+        return entity;
     }
 
-    public Order updateService(UpdateOrderDto updateOrderDto){
-        Order order = this.findById(updateOrderDto.getId());
-        if(order == null){
+    public Order updateService(final Long id, final UpdateOrderDto updateOrderDto){
+        Order entity = this.findById(id);
+        if(entity == null){
             throw new RuntimeException("Serviço não encontrado.");
         }
-        order.merge(updateOrderDto);
-        this.sr.persist(order);
-        return order;
+        mapper.updateOrderDtoToOrder(updateOrderDto,entity);
+        this.repository.persist(entity);
+        return entity;
     }
 
     public boolean deletedService(Long id){
-        if (this.sr.delete("id",id)<1){
+        if (this.repository.delete("id",id)<1){
             throw new RuntimeException("Serviço não deletado.");
         }
         return true;
