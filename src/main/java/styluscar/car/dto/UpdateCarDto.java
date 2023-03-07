@@ -1,10 +1,8 @@
 package styluscar.car.dto;
 
-import io.smallrye.common.constraint.NotNull;
-import java.time.LocalDateTime;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Data
 public class UpdateCarDto {

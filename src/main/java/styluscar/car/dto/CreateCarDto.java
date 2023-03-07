@@ -22,9 +22,6 @@ public class CreateCarDto {
     @NotNull
     private Long clientId;
 
-
-//    @NotNull
-//    private Long clientId;
     private LocalDateTime dateEnter;
 
     private LocalDateTime dateExit;
